@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      <% if(typeof h.siteName !== 'undefined'){ %>
+        <%= h.siteName %>
+      <%}%>
+    </title>
+    <link rel="stylesheet" href="/dist/style.css">
+    <link rel="shortcut icon" type="image/png" href="/images/icons/doughnut.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+</html>
+<body>
+  
+  <% include partials/navbar %>
+  <%- body %>
+  
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%=process.env.MAP_KEY%>&amp;libraries=places"></script>
+  <script src="/dist/App.bundle.js"></script>
+</body>
+</html>

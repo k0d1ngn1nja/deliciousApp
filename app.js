@@ -18,10 +18,10 @@ const helpers = require('./helpers');
 const app = express();
 
 // TEMPLATING ENGINE
-// app.use(ejslayout);
+app.set('view engine', 'ejs');
+app.use(ejslayout);
   // this is the folder where we keep our pug files
 app.set('views', __dirname + '/views');
-app.set('view engine', 'pug');
   // serves up static files from the public folder. Anything in public/ will just be served up as the file it is
 app.use(express.static(__dirname + '/public'));
 
