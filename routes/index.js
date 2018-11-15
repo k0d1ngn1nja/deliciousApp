@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const storeCntrl = require("../controllers/storeCntrl");
 
 // Do work here
-router.get('/', (req, res) => {
-  res.render("test");
-});
+router.get('/', storeCntrl.homePage);
 
 module.exports = router;
