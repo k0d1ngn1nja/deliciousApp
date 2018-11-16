@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>
-      <% if(typeof h.siteName !== 'undefined'){ %>
+      <% if(typeof h.siteName !== 'undefined' && typeof title !== 'undefined'){ %>
         <%= title || h.siteName %>
       <%}%>
     </title>

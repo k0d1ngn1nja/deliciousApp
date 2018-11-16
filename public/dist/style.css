@@ -795,6 +795,7 @@ label {
   list-style: none;
   display: -ms-flexbox;
   display: flex;
+  margin-top: 2rem;
   margin-bottom: 2rem;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap; }

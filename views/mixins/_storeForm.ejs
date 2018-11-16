@@ -1,0 +1,28 @@
+<%
+	storeForm = function(store = {}){
+		const choices = ["Wifi", 'Open Late', 'Family Friendly', "Licensed", 'Alcholic Beverage'];
+
+		const tags = choices.map(function(ele, index){
+			console.log(ele);
+			return `<div class="tag tag__choice">
+				<input type="checkbox" name="tags" id="${ele}" value="${ele}"/>
+				<label for="${ele}"">${ele}</label>
+			</div>`;
+		});
+
+		return (
+			`<form action="/add-store" method="POST" class="card">
+				<label for="name">Name</label>
+				<input type="text" name="name"/>
+
+				<label for="description">Description</label>
+				<textarea name="description" cols="20" rows="5"></textarea>
+
+				<ul class="tags">
+					${tags}
+				</ul>
+				<input type="submit" value="Save" class="button"/>
+			</form>`
+		);
+	};
+%>

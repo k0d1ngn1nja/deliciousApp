@@ -10,6 +10,9 @@ if (major < 7 || (major === 7 && minor <= 5)) {
 // DATABASE CONNECTION
 require("./data/db_config");
 
+// MODELS
+require("./models/Store");
+
 // Start our app!
 const app = require('./app');
 
