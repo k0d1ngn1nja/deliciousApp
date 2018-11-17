@@ -113,6 +113,11 @@ __webpack_require__(1);
 
 var _bling = __webpack_require__(0);
 
+var flashbtn = document.querySelector("#flashBtn");
+setTimeout(function () {
+	flashbtn.click();
+}, 3000);
+
 /***/ })
 /******/ ]);
 //# sourceMappingURL=App.bundle.js.map

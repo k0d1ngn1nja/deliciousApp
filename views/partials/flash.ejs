@@ -5,7 +5,7 @@
 			<% category.forEach((item) =>{ %>
 				<div class="flash flash--<%=item%>">
 					<p class="flash__text"><%= flashes[item] %></p>
-					<button class="flash__remove" onclick="this.parentElement.remove()">
+					<button class="flash__remove" id="flashBtn" onclick="this.parentElement.remove()">
 					×</button>
 				</div>
 			<% }) %>

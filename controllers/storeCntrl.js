@@ -3,7 +3,6 @@ const Store = mongoose.model("Store");
 
 const storeContrl = {
 	homePage: (req, res, next) =>{
-		req.flash("info", "Something happened!!");
   	return res.render("index", {title: "Home | ThatsDeliciousApp"});
 	},
 
@@ -14,9 +13,14 @@ const storeContrl = {
 	create: async (req, res, next) =>{
 		const store = new Store(req.body);
 		await store.save();
-		req.flash("success", `Successfully Created ${store.name}. Care to lease a review?`);
-		res.redirect("/");
+		req.flash("success", `Successfully Created ${store.name}. Care to drop a review?`);
+		res.redirect(`/store/${store.slug}`);
 	},
+
+	getStores: async (req, res, next) =>{
+		const stores = await Store.find();
+		res.render("store/index", {title: "Stores", stores});
+	}
 }
 
 module.exports = storeContrl;
