@@ -1,21 +1,27 @@
 <%
 	storeForm = function(store = {}){
 		const choices = ["Wifi", 'Open Late', 'Family Friendly', "Licensed", 'Alcholic Beverage'];
+		const selectedTags = store.tags || [];
 
 		const tags = choices.map(function(ele, index){
 			return `<div class="tag tag__choice">
-				<input type="checkbox" name="tags" id="${ele}" value="${ele}"/>
+				<input 
+					type="checkbox" 
+					name="tags" id="${ele}" 
+					value="${ele}"
+					${selectedTags.includes(ele) ? "checked" : ""}
+				/>
 				<label for="${ele}"">${ele}</label>
 			</div>`;
 		});
 
 		return (
-			`<form action="/add-store" method="POST" class="card">
+			`<form action="/store/${store._id || ""}" method="POST" class="card">
 				<label for="name">Name</label>
-				<input type="text" name="name"/>
+				<input type="text" name="name" value="${store.name}"/>
 
 				<label for="description">Description</label>
-				<textarea name="description" cols="20" rows="5"></textarea>
+				<textarea name="description" cols="20" rows="5">${store.description}</textarea>
 
 				<ul class="tags">
 					${tags}
