@@ -2,6 +2,10 @@
 
 <div className="inner">
 	<h2><%= title %></h2>
-	<h4><%= store.name %></h4>
-	<%- storeForm(store) %>
+	
+	<% if(typeof store == "undefined") {%>
+		<%- storeForm() %>
+	<%} else {%>
+		<%- storeForm(store) %>
+	<%}%>
 </div>

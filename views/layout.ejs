@@ -16,9 +16,11 @@
   <% include partials/navbar %>
   <% include partials/flash %>
   
-  <%- body %>
+  <div class="content">
+    <%- body %>
+  </div>
   
-  <script src="https://maps.googleapis.com/maps/api/js?key=<%=process.env.MAP_KEY%>&amp;libraries=places"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%=process.env.MAP_KEY%>&libraries=places"></script>
   <script src="/dist/App.bundle.js"></script>
 </body>
 </html>

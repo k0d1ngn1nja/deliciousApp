@@ -25,11 +25,13 @@ const storeContrl = {
 
 	updateStore: async (req, res, next) =>{
 		const { id } = req.params;
+		//set the location data to be a point
+		req.body.location.type = "Point";
 		const store = await Store.findOneAndUpdate({_id: id}, req.body, {
 			new: true,
 			runValidators: true
 		}).exec();
-		req.flash("success", `Successfully updated ${store.name}. <a href="/stores/${store.slug}">View Store</a>`);
+		req.flash("success", `Successfully updated ${store.name}.`);
 		res.redirect(`/store/${store._id}/edit`);
 	},
 

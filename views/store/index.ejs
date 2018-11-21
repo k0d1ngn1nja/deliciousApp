@@ -1,8 +1,10 @@
 <% include ../mixins/_card %>
 
-<div className="inner">
+<div class="inner">
 	<h2><%= title %></h2>
-	<% stores.forEach((store) =>{ %>
-		<%- storeCard(store) %>
-	<% }) %>
+	<div class="stores">
+		<% stores.forEach((store) =>{ %>
+			<%- storeCard(store) %>
+		<% }) %>
+	</div>
 </div>
