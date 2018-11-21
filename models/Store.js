@@ -24,7 +24,8 @@ const storeSchema = new Schema({
 			type: String,
 			required: [true, "Address must be provided!"]
 		}
-	}
+	},
+	photo: String
 },{timestamps: true});
 
 storeSchema.pre("save", function(next){

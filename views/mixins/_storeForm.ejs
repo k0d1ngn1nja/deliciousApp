@@ -15,8 +15,12 @@
 			</div>`;
 		});
 
+		const images = function(store){
+			return "<img src=`/uploads/${store.photo}` alt=${store.name} width=200/>";
+		};
+
 		return (
-			`<form action="/store/${store._id || ""}" method="POST" class="card">
+			`<form action="/store/${store._id || ""}" method="POST" class="card" enctype="multipart/form-data">
 				<label for="name">Name</label>
 				<input type="text" name="name" value="${store.name || ""}"/>
 
@@ -31,6 +35,11 @@
 
 				<label for="lat">Address Lat</label>
 				<input type="text" id="lat" name="location[coordinates][1]" value="${(store.location && store.location.coordinates[1] || "")}" />
+				
+				<label for="photo">Photo</label>
+				<input type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg" />
+				
+				${ store.photo ? images(store) : ""}
 
 				<ul class="tags">
 					${tags}
