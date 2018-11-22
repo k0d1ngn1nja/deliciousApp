@@ -4,11 +4,13 @@ const { imgResize, imgUpload } = require("../handlers/middleware");
 const storeCntrl = require("../controllers/storeCntrl");
 const { catchErrors } = require("../handlers/errorHandlers");
 
+router.get('/add-store', storeCntrl.addStore);
+
 router.get('/', catchErrors(storeCntrl.getStores));
 
 router.get('/stores', catchErrors(storeCntrl.getStores));
 
-router.get('/add-store', storeCntrl.addStore);
+router.get('/stores/:slug', catchErrors(storeCntrl.getStore));
 
 router.get('/stores/:id/edit', catchErrors(storeCntrl.editStore));
 

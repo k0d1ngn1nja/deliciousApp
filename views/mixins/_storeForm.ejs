@@ -16,7 +16,11 @@
 		});
 
 		const images = function(store){
-			return "<img src=`/uploads/${store.photo}` alt=${store.name} width=200/>";
+			return (
+				`<div style='margin-top: 2rem;'>
+					<img src=/uploads/${store.photo} alt=${store.name} width=200/>
+				</div>`
+			);
 		};
 
 		return (

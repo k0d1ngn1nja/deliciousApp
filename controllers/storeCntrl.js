@@ -6,6 +6,13 @@ const storeContrl = {
   	return res.render("index", {title: "Home | ThatsDeliciousApp"});
 	},
 
+	getStore: async (req, res, next) =>{
+		const { slug } = req.params;
+		const store = await Store.findOne({ slug });
+		if(!store) return next();
+		res.render("store/show", {title: store.name, store})
+	},
+
 	addStore: (req, res, next) =>{
 		res.render("store/form", {title: "Add Store"});
 	},
