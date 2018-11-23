@@ -45,6 +45,12 @@ const storeContrl = {
 	getStores: async (req, res, next) =>{
 		const stores = await Store.find();
 		res.render("store/index", {title: "Stores", stores});
+	},
+
+	getStoreByTags: async (req, res, next) =>{
+		const tags = await Store.getTagsList();
+		const tag = req.params.tag;
+		res.render("tags", { tags, title: "Tags", tag});
 	}
 }
 

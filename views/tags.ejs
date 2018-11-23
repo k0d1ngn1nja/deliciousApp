@@ -1,0 +1,15 @@
+<div class="inner">
+	<h2><%= title %> (<%= tag %>)</h2>
+
+	<ul class="tags">
+		<% tags.forEach((t) =>{ %>
+			<li class="tag">
+
+				<a href="/tags/<%= t._id %>" class="tag__link <%= t._id === tag ? "tag__link--active" : "" %>">
+					<span class="tag__text"><%= t._id %></span>
+					<span class="tag__count"><%= t.count %></span>
+				</a>
+			</li>
+		<% }) %>
+	</ul>
+</div>

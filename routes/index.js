@@ -26,4 +26,7 @@ router.post('/store/:id',
 	catchErrors(storeCntrl.updateStore)
 );
 
+router.get("/tags", catchErrors(storeCntrl.getStoreByTags));
+router.get("/tags/:tag", catchErrors(storeCntrl.getStoreByTags));
+
 module.exports = router;
