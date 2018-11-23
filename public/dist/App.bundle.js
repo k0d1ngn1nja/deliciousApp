@@ -148,12 +148,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // $ is not jquery in this instance
 (0, _autocomplete2.default)((0, _bling.$)("#address"), (0, _bling.$)("#lat"), (0, _bling.$)("#lng"));
 
-var flashbtn = document.querySelector("#flashBtn");
-if (flashbtn) {
-	setTimeout(function () {
-		flashbtn.click();
-	}, 3000);
-};
+// const flashbtn = document.querySelector("#flashBtn");
+// if(flashbtn){
+// 	setTimeout(function(){
+// 		flashbtn.click();
+// 	}, 5000);
+// };
 
 /***/ })
 /******/ ]);

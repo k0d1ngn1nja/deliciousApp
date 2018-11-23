@@ -1,6 +1,7 @@
 const multer = require("multer");
 const jimp = require("jimp");
 const uuid = require("uuid");
+
 const multerOptions = {
 	storage: multer.memoryStorage(),
 	fileFilter(req, file, next){
@@ -29,4 +30,29 @@ exports.imgResize = async (req, res, next) =>{
 	await photo.write(`./public/uploads/${req.body.photo}`);
 
 	next();
+};
+
+// VALIDATIONs
+exports.validate = {
+	registration: (req, res, next) =>{
+		req.sanitizeBody("name");
+		req.checkBody("name", "You must provide a name!").notEmpty();
+		req.checkBody("email", "Email is not valid!").isEmail();
+		req.sanitizeBody("email").normalizeEmail({
+			remove_dot: false,
+			remove_extension: false,
+			gmail_remove_subaddress: false
+		});
+		req.checkBody('password', 'Password Cannot be Blank!').notEmpty();
+	  req.checkBody('cpassword', 'Confirmed Password cannot be blank!').notEmpty();
+	  req.checkBody('cpassword', 'Oops! Your passwords do not match').equals(req.body.password);
+
+	  const errors = req.validationErrors();
+	  if(errors){
+	  	req.flash("error", errors.map(err => err.msg));
+	  	return res.render("auth/register", {title: "Register", flashes: req.flash() });
+	  };
+
+	  next(); //there were no errors
+	}
 };

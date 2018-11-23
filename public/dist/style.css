@@ -19,6 +19,9 @@ body {
     .inner {
       padding: 2rem; } }
 
+.content {
+  margin: 3rem 0; }
+
 html {
   box-sizing: border-box; }
 

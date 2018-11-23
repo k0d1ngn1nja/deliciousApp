@@ -2,12 +2,15 @@
 	<div class="inner inner--flashes">
 		<div class="flash-messages">
 			<% const category = Object.keys(locals.flashes) %>
+
 			<% category.forEach((item) =>{ %>
-				<div class="flash flash--<%=item%>">
-					<p class="flash__text"><%= flashes[item] %></p>
-					<button class="flash__remove" id="flashBtn" onclick="this.parentElement.remove()">
-					×</button>
-				</div>
+				<% flashes[item].forEach((info) =>{ %>
+					<div class="flash flash--<%=item%>">
+						<p class="flash__text"><%= info %></p>
+						<button class="flash__remove" id="flashBtn" onclick="this.parentElement.remove()">
+						×</button>
+					</div>
+				<% }) %>
 			<% }) %>
 		</div>
 	</div>
