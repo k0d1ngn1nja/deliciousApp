@@ -12,6 +12,7 @@ require("./data/db_config");
 
 // MODELS
 require("./models/Store");
+require("./models/User");
 
 // Start our app!
 const app = require('./app');
