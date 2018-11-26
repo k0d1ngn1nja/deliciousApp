@@ -6,6 +6,8 @@ const { validate } = require("../handlers/middleware");
 
 router.get('/login', authCntrl.login);
 
+router.get('/logout', authCntrl.logout);
+
 router.post('/login', authCntrl.loginPOST);
 
 module.exports = router;

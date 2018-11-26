@@ -57,12 +57,32 @@
 			</div>
 		</div>
 		<div class="nav__section nav__section--user">
-			<li class="nav__item">
-				<a class="nav__link" href="/register">Register</a>
-			</li>
-			<li class="nav__item">
-				<a class="nav__link" href="/login">Log In</a>
-			</li>
+			<% if(user){ %>
+				<li class="nav__item">
+					<a class="nav__link" href="/hearts" class="nav__link--active">
+						<%- h.icon('heart') %>
+						<span class="heart-count"><%= user.hearts && user.hearts.length %></span>
+					</a>
+				</li>
+				<li class="nav__item">
+					<a class="nav__link" href="/logout" class="nav__link--active">
+						<%- h.icon('logout') %>
+						Logout
+					</a>
+				</li>
+				<li class="nav__item">
+					<a class="nav__link" href="/account" class="nav__link--active">
+						<img src="<%= user.gravatar + 'd=retro' %>" alt="" class="avatar">
+					</a>
+				</li>
+			<% }else{ %>
+				<li class="nav__item">
+					<a class="nav__link" href="/register" class="nav__link--active">Register</a>
+				</li>
+				<li class="nav__item">
+					<a class="nav__link" href="/login">Log In</a>
+				</li>
+			<% } %>
 		</div>
 	</nav>
 </header>

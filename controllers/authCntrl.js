@@ -13,6 +13,12 @@ const authContrl = {
 		successRedirect: "/",
 		successFlash: "You are ow logged in."
 	}),
+
+	logout: (req, res, next) =>{
+		req.logout();
+		req.flash("success", "You are now logged out!");
+		return res.redirect("/");
+	}
 };
 
 module.exports = authContrl;
