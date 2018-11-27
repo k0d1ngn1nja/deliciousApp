@@ -54,6 +54,14 @@ exports.validate = {
 	  };
 
 	  next(); //there were no errors
+	},
+
+	password: (req, res, next) =>{
+		if(req.body.password === req.body.cpassword){
+			return next();
+		};
+		req.flash("error", "Passwords don't match!");
+		return res.redirect("back");
 	}
 };
 

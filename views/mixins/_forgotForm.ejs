@@ -1,0 +1,14 @@
+<%
+	forgotForm = function(){
+		return (
+			`<form action="/account/forgot" class="form" method="post">
+				<h2>I forgot my password!</h2>
+
+				<label for="email">Email</label>
+				<input type="email" name="email"/>
+				
+				<input type="submit" value="Send a Reset Token" class="button" style="margin-top: 1rem;"/>
+			</form>`
+		);
+	}
+%>
