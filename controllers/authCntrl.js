@@ -3,6 +3,7 @@ const User = mongoose.model("User");
 const passport = require("passport");
 const crypto = require("crypto");
 const promisify = require("es6-promisify");
+const mailer = require("../handlers/mailer");
 
 const authContrl = {
 	login: (req, res, next) =>{
@@ -32,7 +33,13 @@ const authContrl = {
 		user.resetPasswordExp = Date.now() + 3600000;
 
 		await user.save();
-		req.flash("success", "A password reset token has been email to you.");
+		await mailer.sendEmail({
+			user,
+			subject: "Password Reset Link",
+			resetURL: `http://${req.headers.host}/account/reset/${user.resetPasswordToken}`,
+			filename: "password-reset"
+		});
+		req.flash("success", "A password reset token has been emailed to you.");
 		return res.redirect("/login")
 	},
 
