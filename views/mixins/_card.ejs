@@ -4,11 +4,13 @@
 			<div class="store">
 				<div class="store__hero">
 					<div class="store__actions">
-						<div class="store__action store__action--edit">
-							<a href="/stores/${store._id}/edit">
-								${h.icon('pencil')}
-							</a>
-						</div>
+						${ user && store.author.equals(user._id) ? 
+							`<div class="store__action store__action--edit">
+								<a href="/stores/${store._id}/edit">
+									${h.icon('pencil')}
+								</a>
+							</div>` : ""
+						}
 					</div>
 					<img src="/uploads/${store.photo || 'store.png'}" alt=''/>
 					<h2 class="title"><a href="/stores/${store.slug}">${store.name}</a></h2>

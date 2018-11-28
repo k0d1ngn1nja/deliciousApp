@@ -73,4 +73,10 @@ exports.isLoggedIn = (req, res, next) =>{
 
 	req.flash("error", "Oops you must be logged in to perform that action.");
 	return res.redirect("/login");
+};
+
+exports.isStoreOwner = (store, user) =>{
+	if(!store.author.equals(user._id)){
+		throw Error("You must own this store to edit it!");
+	};
 }

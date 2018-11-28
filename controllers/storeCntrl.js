@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Store = mongoose.model("Store");
+const { isStoreOwner } = require("../handlers/middleware");
 
 const storeContrl = {
 	homePage: (req, res, next) =>{
@@ -8,7 +9,7 @@ const storeContrl = {
 
 	getStore: async (req, res, next) =>{
 		const { slug } = req.params;
-		const store = await Store.findOne({ slug });
+		const store = await Store.findOne({ slug }).populate("author");
 		if(!store) return next();
 		res.render("store/show", {title: store.name, store})
 	},
@@ -18,6 +19,7 @@ const storeContrl = {
 	},
 
 	createStore: async (req, res, next) =>{
+		req.body.author = req.user._id;
 		const store = new Store(req.body);
 		await store.save();
 		req.flash("success", `Successfully Created ${store.name}. Care to drop a review?`);
@@ -27,6 +29,7 @@ const storeContrl = {
 	editStore: async (req, res, next) =>{
 		const { id } = req.params;
 		const store = await Store.findOne({_id: id});
+		isStoreOwner(store, req.user);
 		res.render("store/form", { title: `Edit ${store.name}`, store});
 	},
 
