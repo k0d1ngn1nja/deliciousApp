@@ -33,6 +33,12 @@ const storeSchema = new Schema({
 	}
 },{timestamps: true});
 
+// defines indexes to help when searching
+storeSchema.index({
+	name: "text",
+	description: "text"
+});
+
 storeSchema.pre("save", async function(next){
 	if(!this.isModified("name")){
 		return next();

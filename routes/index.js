@@ -30,4 +30,7 @@ router.post('/store/:id',
 router.get("/tags", catchErrors(storeCntrl.getStoreByTags));
 router.get("/tags/:tag", catchErrors(storeCntrl.getStoreByTags));
 
+// API
+router.get("/api/search", catchErrors(storeCntrl.searchStores));
+
 module.exports = router;
