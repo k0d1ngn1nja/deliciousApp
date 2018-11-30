@@ -27,10 +27,13 @@ router.post('/store/:id',
 	catchErrors(storeCntrl.updateStore)
 );
 
+router.get("/map", storeCntrl.viewMap);
+
 router.get("/tags", catchErrors(storeCntrl.getStoreByTags));
 router.get("/tags/:tag", catchErrors(storeCntrl.getStoreByTags));
 
 // API
 router.get("/api/search", catchErrors(storeCntrl.searchStores));
+router.get("/api/stores/near", catchErrors(storeCntrl.mapStores));
 
 module.exports = router;

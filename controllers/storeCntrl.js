@@ -69,6 +69,28 @@ const storeContrl = {
 			score: { $meta: "textScore"}
 		}).limit(5);
 		res.json(stores);
+	},
+
+	viewMap: (req, res, next) =>{
+		res.render("store/map", {title: "Map"});
+	},
+
+	mapStores: (req, res, next) =>{
+		const coordinates = [req.query.lng, req.query.lat].map(parseFloat);
+		const q = {
+			location:{
+				$near: {
+					$geometry: {
+						type: "Point",
+						coordinates
+					},
+					$maxDistance: 10000 //10km
+				}
+			}
+		};
+
+		const stores = Store.find(q).select("slug name description location").limit(10);
+		return res.json(stores);
 	}
 }
 
