@@ -75,7 +75,7 @@ const storeContrl = {
 		res.render("store/map", {title: "Map"});
 	},
 
-	mapStores: (req, res, next) =>{
+	mapStores: async (req, res, next) =>{
 		const coordinates = [req.query.lng, req.query.lat].map(parseFloat);
 		const q = {
 			location:{
@@ -89,7 +89,7 @@ const storeContrl = {
 			}
 		};
 
-		const stores = Store.find(q).select("slug name description location").limit(10);
+		const stores = await Store.find(q).select("slug name description location").limit(10);
 		return res.json(stores);
 	}
 }
