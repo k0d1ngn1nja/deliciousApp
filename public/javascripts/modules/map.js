@@ -53,7 +53,7 @@ function makeMap(mapDiv){
 	const autocomplete = new google.maps.places.Autocomplete(_input);
 	autocomplete.addListener('place_changed', () =>{
 		const place = autocomplete.getPlace();
-		loadPlaces(map, place.geometry.location.lat(), place.geometry.location.lng())
+		loadPlaces(map, place.geometry.location.lat(), place.geometry.location.lng());
 	})
 };
 

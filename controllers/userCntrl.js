@@ -11,7 +11,7 @@ const userContrl = {
 		const user = new User({email: req.body.email, name: req.body.name});
 		const registerWithPromise = promisify(User.register, User);
 		await registerWithPromise(user, req.body.password);
-		next(); //pass to login action in authController 
+		return next(); //pass to login action in authController 
 	},
 
 	account: (req, res, next) =>{

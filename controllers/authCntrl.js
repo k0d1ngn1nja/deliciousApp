@@ -14,7 +14,7 @@ const authContrl = {
 		failureRedirect: "/login",
 		failureFlash: "Failed Login",
 		successRedirect: "/",
-		successFlash: "You are ow logged in."
+		successFlash: "Login was successful."
 	}),
 
 	logout: (req, res, next) =>{

@@ -35,5 +35,6 @@ router.get("/tags/:tag", catchErrors(storeCntrl.getStoreByTags));
 // API
 router.get("/api/search", catchErrors(storeCntrl.searchStores));
 router.get("/api/stores/near", catchErrors(storeCntrl.mapStores));
+router.post("/api/stores/:id/like", catchErrors(storeCntrl.like));
 
 module.exports = router;

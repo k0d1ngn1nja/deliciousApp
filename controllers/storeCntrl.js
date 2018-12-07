@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Store = mongoose.model("Store");
+const User = mongoose.model("User");
 const { isStoreOwner } = require("../handlers/middleware");
 
 const storeContrl = {
@@ -91,6 +92,17 @@ const storeContrl = {
 
 		const stores = await Store.find(q).select("slug name description location").limit(10);
 		return res.json(stores);
+	},
+
+	like: async (req, res, next) =>{
+		const likes = req.user.likes.map((obj) => obj.toString());
+		const operator = likes.includes(req.params.id) ? "$pull" : "$addToSet";
+		const user = await User.findByIdAndUpdate(req.user._id, 
+			{ [operator]: {likes: req.params.id} },
+			{ new: true }
+		);
+
+		res.json(user);
 	}
 }
 

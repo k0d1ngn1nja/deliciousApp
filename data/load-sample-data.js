@@ -37,9 +37,10 @@ async function loadData() {
     console.log(e);
     process.exit();
   }
-}
+};
+
 if (process.argv.includes('--delete')) {
   deleteData();
 } else {
   loadData();
-}
+};
