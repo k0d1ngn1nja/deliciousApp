@@ -28,6 +28,7 @@ router.post('/store/:id',
 );
 
 router.get("/map", storeCntrl.viewMap);
+router.get("/hearts", isLoggedIn, catchErrors(storeCntrl.getLikedStores));
 
 router.get("/tags", catchErrors(storeCntrl.getStoreByTags));
 router.get("/tags/:tag", catchErrors(storeCntrl.getStoreByTags));

@@ -103,6 +103,13 @@ const storeContrl = {
 		);
 
 		res.json(user);
+	},
+
+	getLikedStores: async (req, res, next) =>{
+		const q = {_id: {$in: req.user.likes}};
+		const stores = await Store.find(q);
+
+		res.render("store/index", {title: "Liked Stores", stores});
 	}
 }
 
