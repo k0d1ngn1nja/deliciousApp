@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { imgResize, imgUpload, isLoggedIn } = require("../handlers/middleware");
 const storeCntrl = require("../controllers/storeCntrl");
+const reviewCntrl = require("../controllers/reviewCntrl");
 const { catchErrors } = require("../handlers/errorHandlers");
 
 router.get('/', catchErrors(storeCntrl.getStores));
@@ -32,6 +33,8 @@ router.get("/hearts", isLoggedIn, catchErrors(storeCntrl.getLikedStores));
 
 router.get("/tags", catchErrors(storeCntrl.getStoreByTags));
 router.get("/tags/:tag", catchErrors(storeCntrl.getStoreByTags));
+
+router.post("/reviews/:id", isLoggedIn, catchErrors(reviewCntrl.create));
 
 // API
 router.get("/api/search", catchErrors(storeCntrl.searchStores));

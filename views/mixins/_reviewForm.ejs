@@ -1,0 +1,27 @@
+<%  
+	const ratingEle = function(){
+		let temp = "";
+		[5,4,3,2,1].forEach(function(num){
+			temp += (`<input type="radio" name="rating" id="star${num}" value="${num}" />
+				<label for="star${num}">${num} Star(s)</label>`);
+		});
+
+		return temp;
+	};
+
+	reviewForm = (store) =>{
+		return (
+			`<form action="/reviews/${store._id}" method="POST" class="reviewer">
+				<textarea name="text" placeholder="Have you tried this place? Leave a review..."></textarea>
+
+				<div class="reviewer__meta">
+					<div class="reviewer__stars">
+						${ratingEle()}
+					</div>
+
+					<input type="submit" class="button" value="Submit Review" />
+				</div>
+			</form>`
+		);
+	}
+%>

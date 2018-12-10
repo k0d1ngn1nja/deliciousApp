@@ -1,3 +1,5 @@
+<% include ../mixins/_reviewForm %>
+
 <div class="content">
 	<div class="single">
 		<div class="single__hero">
@@ -9,6 +11,7 @@
 			<img src="<%= h.staticMap(store.location.coordinates) %>" alt="" class="single__map">
 			<p class="single__location"><%= store.location.address %></p>
 			<p><%= store. description %></p>
+			
 			<% if(store.tags){ %>
 				<ul class="tags">
 					<% store.tags.forEach((tag) =>{%>
@@ -19,6 +22,10 @@
 						</li>
 					<% }) %>
 				</ul>
+			<% } %>
+
+			<% if(user){ %>
+				<%- reviewForm(store) %>
 			<% } %>
 		</div>
 	</div>
