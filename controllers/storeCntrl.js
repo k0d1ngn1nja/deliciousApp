@@ -10,7 +10,8 @@ const storeContrl = {
 
 	getStore: async (req, res, next) =>{
 		const { slug } = req.params;
-		const store = await Store.findOne({ slug }).populate("author");
+		const store = await Store.findOne({ slug }).populate("author reviews");
+		console.log(store);
 		if(!store) return next();
 		res.render("store/show", {title: store.name, store})
 	},

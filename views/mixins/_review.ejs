@@ -1,0 +1,22 @@
+<%  
+	storeReviews = (review) =>{
+		return (`
+			<div class="review__header">
+				<div class="review__author">
+					<img src="${review.author.gravatar}" alt="${review.author.name}" class="avatar" />
+					<p>${review.author.name}</p>
+				</div>
+				<div class="review__stars">
+					${"&#9733;".repeat(review.rating)}${"&#9734;".repeat(5 - review.rating)}
+				</div>
+				<div class="review__time" datetime=${review.createdAt}>
+					${h.moment(review.createdAt).fromNow()}
+				</div>
+			</div>
+
+			<div class="review__body">
+				<p>${review.text}</p>
+			</div>
+		`);
+	}
+%>
