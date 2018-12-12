@@ -1,0 +1,23 @@
+<div class="inner">
+	<h2>Top <%= stores.length %> stores</h2>
+	<table class="table">
+		<thead>
+			<td>photo</td>
+			<td>ranking</td>
+			<td>name</td>
+			<td>reviews</td>
+			<td>Average Rating</td>
+		</thead>
+		<% stores.forEach((store, i) =>{ %>
+			<tr>
+				<td>
+					<img src="/uploads/<%= store.photo || 'store.png' %>" width="200" alt="<%= store.name %>">
+				</td>
+				<td><%= i + 1 %></td>
+				<td><a href="/stores/<%= store.slug %>"><%= store.name%></a></td>
+				<td><%= store.reviews.length %></td>
+				<td><%= Math.round(store.averageRating * 10) / 10 %></td>
+			</tr>
+		<% }) %>
+	</table>
+</div>

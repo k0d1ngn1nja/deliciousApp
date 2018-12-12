@@ -48,7 +48,7 @@ const storeContrl = {
 	},
 
 	getStores: async (req, res, next) =>{
-		const stores = await Store.find();
+		const stores = await Store.find().populate('reviews');
 		res.render("store/index", {title: "Stores", stores});
 	},
 
@@ -111,6 +111,12 @@ const storeContrl = {
 		const stores = await Store.find(q);
 
 		res.render("store/index", {title: "Liked Stores", stores});
+	},
+
+	getTopStores: async (req, res, next) =>{
+		const stores = await Store.getTopStores();
+		// res.json(stores);
+		res.render("store/topStores", { stores, title: `${'&#9733;'} Top Stores!`})
 	}
 }
 

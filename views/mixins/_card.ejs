@@ -1,6 +1,6 @@
 <%  
 	storeCard = (store ={}) =>{
-		const likeStrings = user.likes.map(obj => obj.toString());
+		const likeStrings = user ? user.likes.map(obj => obj.toString()) : '';
 		const likeClass = likeStrings.includes(store._id.toString()) ? "heart__button--hearted" : "";
 
 		return (`
@@ -14,7 +14,7 @@
 										${ h.icon('heart') }
 									</button>
 								</form>
-							</div>` : "FUCK"
+							</div>` : ""
 						}
 
 						${ user && store.author.equals(user._id) ? 
@@ -22,6 +22,13 @@
 								<a href="/stores/${store._id}/edit">
 									${h.icon('pencil')}
 								</a>
+							</div>` : ""
+						}
+
+						${ store.reviews ? 
+							`<div className="store__action store__action--count">
+								${h.icon('review')}
+								<span>${store.reviews.length}</span>
 							</div>` : ""
 						}
 					</div>

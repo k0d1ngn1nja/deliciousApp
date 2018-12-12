@@ -35,6 +35,7 @@ router.get("/tags", catchErrors(storeCntrl.getStoreByTags));
 router.get("/tags/:tag", catchErrors(storeCntrl.getStoreByTags));
 
 router.post("/reviews/:id", isLoggedIn, catchErrors(reviewCntrl.create));
+router.get("/top_stores", catchErrors(storeCntrl.getTopStores));
 
 // API
 router.get("/api/search", catchErrors(storeCntrl.searchStores));
