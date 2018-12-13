@@ -11,6 +11,8 @@ router.get('/add-store', isLoggedIn, storeCntrl.addStore);
 
 router.get('/stores', catchErrors(storeCntrl.getStores));
 
+router.get('/stores/page/:page', catchErrors(storeCntrl.getStores));
+
 router.get('/stores/:slug', catchErrors(storeCntrl.getStore));
 
 router.get('/stores/:id/edit', catchErrors(storeCntrl.editStore));

@@ -1,4 +1,5 @@
 <% include ../mixins/_card %>
+<% include ../mixins/_pagination %>
 
 <div class="inner">
 	<h2><%= title %></h2>
@@ -7,4 +8,5 @@
 			<%- storeCard(store) %>
 		<% }) %>
 	</div>
+	<%- pagination(page, pages, count) %>
 </div>

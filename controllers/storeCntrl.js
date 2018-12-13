@@ -11,7 +11,6 @@ const storeContrl = {
 	getStore: async (req, res, next) =>{
 		const { slug } = req.params;
 		const store = await Store.findOne({ slug }).populate("author reviews");
-		console.log(store);
 		if(!store) return next();
 		res.render("store/show", {title: store.name, store})
 	},
@@ -48,8 +47,22 @@ const storeContrl = {
 	},
 
 	getStores: async (req, res, next) =>{
-		const stores = await Store.find().populate('reviews');
-		res.render("store/index", {title: "Stores", stores});
+		const page = req.params.page || 1;
+		const limit = 4;
+		const skip = (page * limit) - limit;
+
+		const storesPromise = Store.find().skip(skip).limit(limit).sort({createdAt: 'desc'});
+		const countPromise = Store.count();
+
+		const [stores, count] = await Promise.all([storesPromise, countPromise]);
+		const pages = Math.ceil(count / limit);
+
+		if(!stores.length && skip){
+			req.flash('info', "You asked for a page that doesn't exists!");
+			return res.redirect(`/stores/page/${pages}`);
+		};
+
+		return res.render("store/index", {title: "Stores", stores, page, pages, count});
 	},
 
 	getStoreByTags: async (req, res, next) =>{

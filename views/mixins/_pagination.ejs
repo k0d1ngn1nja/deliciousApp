@@ -1,0 +1,17 @@
+<%  
+	pagination = (page, pages, count) =>{
+		return(`
+			<div class="pagination">
+				<div class="pagination__prev">
+					${page > 1 ? `<a href="/stores/page/${page - 1}">Prev</a>` : ""}
+				</div>
+				<div class="pagination__text">
+					<p>Page ${page} of ${pages}</p>
+				</div>
+				<div class="pagination__next">
+					${(page < pages) ? `<a href="/stores/page/${parseFloat(page) + 1}">Next</a>` : ""}
+				</div>
+			</div>
+		`);
+	}
+%>
